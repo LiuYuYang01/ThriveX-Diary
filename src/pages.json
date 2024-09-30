@@ -1,4 +1,10 @@
 {
+	"easycom": {
+        "autoscan": true,
+        "custom": {
+            "^uni-(.*)": "@dcloudio/uni-ui/lib/uni-$1/uni-$1.vue"
+        }
+    },
 	"pages": [
 		{
 			"path": "pages/diary/index",
@@ -11,6 +17,19 @@
 			"style": {
 				"navigationBarTitleText": "我的"
 			}
+		}
+	],
+	"subPackages": [
+		{
+			"root": "sub_packages",
+			"pages": [
+				{
+					"path": "release/index",
+					"style": {
+						"navigationBarTitleText": "写日记"
+					}
+				}
+			]
 		}
 	],
 	"globalStyle": {

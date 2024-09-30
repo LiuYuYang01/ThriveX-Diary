@@ -3,7 +3,7 @@
 </script>
 
 <template>
-  <view>My</view>
+  <view class="page">我的</view>
 </template>
 
 <style scoped lang='scss'>

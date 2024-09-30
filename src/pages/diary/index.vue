@@ -1,5 +1,5 @@
 <template>
-  <view>Home</view>
+  <view class="page">日记</view>
 </template>
 
 <script setup lang="ts">

@@ -5,4 +5,10 @@
 
 </template>
 
-<style></style>
+<style lang="scss">
+@import './uni.scss';
+
+.page{
+    padding: 40rpx;
+}
+</style>
