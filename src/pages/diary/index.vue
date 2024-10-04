@@ -7,29 +7,13 @@ const { safeAreaInsets } = uni.getSystemInfoSync()
 // 底部安全距离
 const safeTop = safeAreaInsets?.top ? safeAreaInsets?.top + 'px' : '40rpx';
 
-// 处理时间数据
-const formatDate = (timestamp: number) => {
-  const now = dayjs();
-  const date = dayjs(timestamp);
-
-  if (date.isSame(now, 'day')) {
-    return '今天';
-  } else if (date.isSame(now.subtract(1, 'day'), 'day')) {
-    return '昨天';
-  } else if (now.diff(date, 'day') <= 7) {
-    return `${now.diff(date, 'day')}天前`;
-  } else {
-    return dayjs(timestamp).format('YYYY-MM-DD');
-  }
-};
-
 const list = ref(
   [
     {
       id: 1,
       content: "早起不了一点...",
       comment: 6,
-      image: ["https://blog.liuyuyang.net/usr/uploads/2024/05/4016624051.png"],
+      image: ["https://blog.liuyuyang.net/usr/uploads/2024/05/4016624051.png", "https://blog.liuyuyang.net/usr/uploads/2024/05/3481459650.png"],
       createTime: 1728049405779
     },
     {
@@ -149,6 +133,30 @@ const list = ref(
     }
   ]
 );
+
+// 处理时间数据
+const formatDate = (timestamp: number) => {
+  const now = dayjs();
+  const date = dayjs(timestamp);
+
+  if (date.isSame(now, 'day')) {
+    return '今天';
+  } else if (date.isSame(now.subtract(1, 'day'), 'day')) {
+    return '昨天';
+  } else if (now.diff(date, 'day') <= 7) {
+    return `${now.diff(date, 'day')}天前`;
+  } else {
+    return dayjs(timestamp).format('YYYY-MM-DD');
+  }
+};
+
+// 预览图片
+const previewImage = (urls: string[], current: number) => {
+  uni.previewImage({
+    urls,
+    current,
+  });
+}
 </script>
 
 <template>
@@ -185,7 +193,8 @@ const list = ref(
           <view class="content">{{ item.content }}</view>
 
           <view class="image_box">
-            <image :src="url" mode="aspectFill" class="image" v-for="url in item.image" />
+            <image :src="url" mode="aspectFill" class="image" v-for="(url, current) in item.image"
+              @click="previewImage(item.image, current)" />
           </view>
         </view>
       </view>
