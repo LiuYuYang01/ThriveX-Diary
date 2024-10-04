@@ -9,7 +9,7 @@
 		{
 			"path": "pages/diary/index",
 			"style": {
-				"navigationBarTitleText": "日记"
+				"navigationBarTitleText": "碎碎念"
 			}
 		},
 		{
@@ -34,13 +34,14 @@
 	],
 	"globalStyle": {
 		"navigationBarTextStyle": "white",
-		"navigationBarBackgroundColor": "#42b983"
+		"navigationBarBackgroundColor": "#42b983",
+		"navigationStyle": "custom"
 	},
 	"tabBar": {
 		"color": "#333333",
 		"selectedColor": "#42b983",
 		"backgroundColor": "#fff",
-		"borderStyle": "white",
+		"borderStyle": "black",
 		"list": [
 			{
 				"pagePath": "pages/diary/index",
