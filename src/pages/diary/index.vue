@@ -2,6 +2,11 @@
 import { ref } from 'vue';
 import dayjs from 'dayjs';
 
+// 获取屏幕边界到安全区域距离
+const { safeAreaInsets } = uni.getSystemInfoSync()
+// 底部安全距离
+const safeTop = safeAreaInsets?.top ? safeAreaInsets?.top + 'px' : '40rpx';
+
 // 处理时间数据
 const formatDate = (timestamp: number) => {
   const now = dayjs();
@@ -146,7 +151,7 @@ const list = ref(
 
 <template>
   <view class="page">
-    <view class="header">
+    <view class="header" :style="{ paddingTop: safeTop }">
       <view class="box">
         <view class="time">
           <view class="day">30</view>
@@ -190,9 +195,9 @@ const list = ref(
 
 .header {
   padding: 40rpx;
-  border-bottom-right-radius: 240rpx;
+  border-bottom-right-radius: 160rpx;
   background-color: #42b983;
-  box-shadow: 0 20rpx 30rpx -6rpx rgba(102,184,135, 0.9);
+  box-shadow: 0 20rpx 30rpx -6rpx rgba(102, 184, 135, 0.9);
 
   .box {
     display: flex;
@@ -280,7 +285,7 @@ const list = ref(
     }
   }
 
-  .box_focus{
+  .box_focus {
     border: 1px solid #42b983;
   }
 }
