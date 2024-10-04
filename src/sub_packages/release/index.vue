@@ -18,7 +18,7 @@ const content = ref("")
 
     <textarea auto-height placeholder-style="color:#d3d3d3" placeholder="记录美好时刻!" v-model="content" class="content" />
 
-    <uni-file-picker  limit="4"></uni-file-picker>
+    <uni-file-picker limit="4"></uni-file-picker>
 
     <button type="primary" :style="{ marginBottom: safeBottom }" class="save">保存内容</button>
   </view>
