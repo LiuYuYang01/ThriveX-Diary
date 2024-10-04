@@ -29,25 +29,27 @@ const list = ref(
       id: 1,
       content: "早起不了一点...",
       comment: 6,
+      image: ["https://blog.liuyuyang.net/usr/uploads/2024/05/4016624051.png"],
       createTime: 1728049405779
     },
     {
       id: 2,
       content: "今天的天气真好，阳光明媚，心情也格外愉悦。打算去公园散步，呼吸新鲜空气，享受这美好的时光。",
       comment: 3,
-      createTime: 1728050405779
+      image: ["https://blog.liuyuyang.net/usr/uploads/2024/05/3481459650.png"],
+      createTime: 1727961185000
     },
     {
       id: 3,
       content: "学习编程真有趣，特别是当你写出第一个能运行的程序时，那种成就感无以言表。希望能不断进步。",
       comment: 5,
-      createTime: 1728051405779
+      createTime: 1727874785000
     },
     {
       id: 4,
       content: "需要喝杯咖啡提神，昨晚加班到很晚，今天的工作任务依然繁重。希望能尽快完成手头的项目。",
       comment: 2,
-      createTime: 1728052405779
+      createTime: 1727788385000
     },
     {
       id: 5,
@@ -181,6 +183,10 @@ const list = ref(
           </view>
 
           <view class="content">{{ item.content }}</view>
+
+          <view class="image_box">
+            <image :src="url" mode="aspectFill" class="image" v-for="url in item.image" />
+          </view>
         </view>
       </view>
     </view>
@@ -257,7 +263,6 @@ const list = ref(
     border-radius: 20rpx;
     background-color: #fff;
     border: 1px solid #eee;
-    // box-shadow: 0 20rpx 30rpx -6rpx rgba(0, 0, 0, 0.1);
 
     .time {
       font-size: 24rpx;
@@ -282,6 +287,20 @@ const list = ref(
       margin-top: 10rpx;
       font-size: 28rpx;
       color: #333;
+    }
+
+    .image_box {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin-top: 20rpx;
+
+      .image {
+        width: 100%;
+        height: 200rpx;
+        border-radius: 20rpx;
+        border: 2rpx solid #eee;
+      }
     }
   }
 
