@@ -3,7 +3,8 @@ import { ref } from 'vue';
 
 // 获取屏幕边界到安全区域距离
 const { safeAreaInsets } = uni.getSystemInfoSync()
-// 底部安全距离
+// 安全距离
+const safeTop = safeAreaInsets?.top +'px'
 const safeBottom = safeAreaInsets?.bottom ? safeAreaInsets.bottom + 'px' : (safeAreaInsets?.bottom! + 20) + 'px'
 
 const content = ref("")
@@ -12,7 +13,7 @@ const content = ref("")
 
 <template>
   <view class="page">
-    <input focus placeholder="标题" placeholder-style="color:#d3d3d3" class="title" />
+    <input focus placeholder="标题" placeholder-style="color:#d3d3d3" class="title" :style="{ marginTop: safeTop }"/>
     <view class="data">9月30日 晚上7:42 <text style="padding: 0 10rpx;">|</text> {{ content.length ? content.length : 0 }}字
     </view>
 
@@ -20,7 +21,7 @@ const content = ref("")
 
     <uni-file-picker limit="4"></uni-file-picker>
 
-    <button type="primary" :style="{ marginBottom: safeBottom }" class="save">保存内容</button>
+    <button type="primary" :style="{ marginBottom: safeBottom }" class="save">记录此刻</button>
   </view>
 </template>
 

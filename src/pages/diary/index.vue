@@ -4,7 +4,7 @@ import dayjs from 'dayjs';
 
 // 获取屏幕边界到安全区域距离
 const { safeAreaInsets } = uni.getSystemInfoSync()
-// 底部安全距离
+// 安全距离
 const safeTop = safeAreaInsets?.top ? safeAreaInsets?.top + 'px' : '40rpx';
 
 const list = ref(
