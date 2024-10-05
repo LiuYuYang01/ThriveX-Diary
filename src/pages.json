@@ -1,15 +1,16 @@
 {
 	"easycom": {
-        "autoscan": true,
-        "custom": {
-            "^uni-(.*)": "@dcloudio/uni-ui/lib/uni-$1/uni-$1.vue"
-        }
-    },
+		"autoscan": true,
+		"custom": {
+			"^uni-(.*)": "@dcloudio/uni-ui/lib/uni-$1/uni-$1.vue"
+		}
+	},
 	"pages": [
 		{
 			"path": "pages/diary/index",
 			"style": {
-				"navigationBarTitleText": "碎碎念"
+				"navigationBarTitleText": "碎碎念",
+				"navigationStyle": "custom"
 			}
 		},
 		{
@@ -26,13 +27,13 @@
 				{
 					"path": "release/index",
 					"style": {
-						"navigationBarTitleText": "写日记"
+						"navigationStyle": "custom"
 					}
 				},
 				{
 					"path": "details/index",
 					"style": {
-						"navigationBarTitleText": "日记"
+						"navigationBarTitleText": "详情"
 					}
 				}
 			]
@@ -40,8 +41,7 @@
 	],
 	"globalStyle": {
 		"navigationBarTextStyle": "white",
-		"navigationBarBackgroundColor": "#42b983",
-		"navigationStyle": "custom"
+		"navigationBarBackgroundColor": "#42b983"
 	},
 	"tabBar": {
 		"color": "#333333",

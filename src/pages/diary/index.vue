@@ -157,6 +157,12 @@ const previewImage = (urls: string[], current: number) => {
     current,
   });
 }
+
+const toDetails = (id: number) => {
+  uni.navigateTo({
+    url: `/sub_packages/details/index?id=${id}`,
+  })
+}
 </script>
 
 <template>
@@ -181,7 +187,7 @@ const previewImage = (urls: string[], current: number) => {
     </view>
 
     <view class="main">
-      <view class="item" v-for="item in list" :key="item.id">
+      <view class="item" v-for="item in list" :key="item.id" @click="toDetails(item.id)">
         <h3>{{ formatDate(item.createTime) }}</h3>
 
         <view hover-class="box_focus" class="box">
@@ -193,7 +199,7 @@ const previewImage = (urls: string[], current: number) => {
           <view class="content">{{ item.content }}</view>
 
           <view class="image_box">
-            <image :src="url" mode="aspectFill" class="image" v-for="(url, current) in item.image"
+            <image :src="url" mode="aspectFill" class="image" :key="current" v-for="(url, current) in item.image"
               @click="previewImage(item.image, current)" />
           </view>
         </view>
