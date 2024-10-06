@@ -1,10 +1,6 @@
 <script setup lang='ts'>
 import dayjs from 'dayjs';
-
-// 获取屏幕边界到安全区域距离
-const { safeAreaInsets } = uni.getSystemInfoSync()
-// 安全距离
-const safeTop = safeAreaInsets?.top + 'px';
+import { ref } from 'vue';
 
 const data = {
     id: 2,
@@ -21,6 +17,32 @@ const previewImage = (urls: string[], current: number) => {
         current,
     });
 }
+
+const commentList = ref([
+    {
+        id: 1,
+        name: "宇阳",
+        avatar: "https://blog.liuyuyang.net/avatar.jpg",
+        content: "春花烂漫，生活也亦如此，充满生机与希望。",
+        createTime: 1727961185000,
+        children: [
+            {
+                id: 3,
+                name: "神秘人",
+                avatar: "https://blog.liuyuyang.net/avatar.jpg",
+                content: "也许这就是春天的魅力吧",
+                createTime: 1727961185000
+            }
+        ]
+    },
+    {
+        id: 2,
+        name: "宇阳",
+        avatar: "https://blog.liuyuyang.net/avatar.jpg",
+        createTime: 1727961185000,
+        content: "春花烂漫，生活也亦如此，充满生机与希望，这就是春天的魅力吧。"
+    }
+])
 </script>
 
 <template>
@@ -40,7 +62,7 @@ const previewImage = (urls: string[], current: number) => {
                     </view>
                 </view>
 
-                <view hover-class="msg_focus" class="msg">6条评论</view>
+                <view hover-class="msg_focus" class="msg">{{ commentList.length }}条评论</view>
             </view>
 
             <view class="statis">记录于 {{ dayjs(data.createTime).format('HH:mm') }}</view>
@@ -52,6 +74,31 @@ const previewImage = (urls: string[], current: number) => {
             <view class="image_box">
                 <image :src="url" mode="aspectFill" class="image" :key="current" v-for="(url, current) in data.image"
                     @click="previewImage(data.image, current)" />
+            </view>
+        </view>
+
+        <view class="comment">
+            <view class="item" :key="one.id" v-for="one in commentList">
+                <view class="info">
+                    <image :src="one.avatar" mode="aspectFill" class="avatar" />
+                    <text class="name">{{ one.name }}</text>
+                    <text class="time">{{ dayjs(one.createTime).format('HH:mm') }}</text>
+                </view>
+
+                <view class="content">{{ one.content }}</view>
+
+                <view class="two" v-if="one.children">
+                    <template v-for="two in one.children">
+                        <view class="info">
+                            <image :src="two.avatar" mode="aspectFill" class="avatar" />
+                            <text class="name">{{ two.name }}</text>
+                            <text class="time">{{ dayjs(two.createTime).format('HH:mm') }}</text>
+                        </view>
+
+                        <view class="content" style="font-size: 24rpx;">回复{{ one.name }}：{{ two.content }}
+                        </view>
+                    </template>
+                </view>
             </view>
         </view>
     </view>
@@ -127,6 +174,49 @@ const previewImage = (urls: string[], current: number) => {
             width: 100%;
             height: 200rpx;
             border: 2rpx solid #eee;
+        }
+    }
+}
+
+.comment {
+    margin-top: 80rpx;
+
+    .item {
+        margin: 40rpx 0;
+
+        .info {
+            display: flex;
+            align-items: center;
+
+            .name {
+                font-size: 28rpx;
+                font-weight: 700;
+                margin-left: 10rpx;
+                margin-right: 20rpx;
+            }
+
+            .time {
+                color: #999;
+                font-size: 24rpx;
+                font-family: serif;
+            }
+
+            .avatar {
+                width: 60rpx;
+                height: 60rpx;
+                border-radius: 50%;
+            }
+        }
+
+        .content {
+            font-size: 28rpx;
+            color: #666;
+            padding-left: 70rpx;
+        }
+
+        .two {
+            padding-left: 60rpx;
+            padding-top: 40rpx;
         }
     }
 }

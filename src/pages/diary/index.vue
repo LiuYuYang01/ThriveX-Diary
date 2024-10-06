@@ -200,7 +200,7 @@ const toDetails = (id: number) => {
 
           <view class="image_box">
             <image :src="url" mode="aspectFill" class="image" :key="current" v-for="(url, current) in item.image"
-              @click="previewImage(item.image, current)" />
+              @click.stop="previewImage(item.image, current)" />
           </view>
         </view>
       </view>
