@@ -5,7 +5,7 @@ import { ref } from 'vue';
 const { safeAreaInsets } = uni.getSystemInfoSync()
 // 安全距离
 const safeTop = safeAreaInsets?.top +'px'
-const safeBottom = safeAreaInsets?.bottom ? safeAreaInsets.bottom + 'px' : (safeAreaInsets?.bottom! + 20) + 'px'
+const safeBottom = safeAreaInsets?.bottom ? safeAreaInsets.bottom + 'px' : (safeAreaInsets?.bottom! + 40) + 'rpx'
 
 const content = ref("")
 

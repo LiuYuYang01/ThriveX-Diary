@@ -2,6 +2,11 @@
 import dayjs from 'dayjs';
 import { ref } from 'vue';
 
+// 获取屏幕边界到安全区域距离
+const { safeAreaInsets } = uni.getSystemInfoSync()
+// 安全距离
+const safeBottom = safeAreaInsets?.bottom ? safeAreaInsets.bottom + 'px' : (safeAreaInsets?.bottom! + 20) + 'rpx'
+
 const data = {
     id: 2,
     content: "今天的天气真好，阳光明媚，心情也格外愉悦。打算去公园散步，呼吸新鲜空气，享受这美好的时光。",
@@ -77,7 +82,7 @@ const commentList = ref([
             </view>
         </view>
 
-        <view class="comment">
+        <view class="comment" :style="{ paddingBottom: '100rpx' }">
             <view class="item" :key="one.id" v-for="one in commentList">
                 <view class="info">
                     <image :src="one.avatar" mode="aspectFill" class="avatar" />
@@ -100,6 +105,11 @@ const commentList = ref([
                     </template>
                 </view>
             </view>
+        </view>
+
+        <view class="reply" :style="{ paddingBottom: safeBottom }">
+            <textarea auto-height placeholder="请输入回复内容" />
+            <view hover-class="btn_focus" class="btn">回复</view>
         </view>
     </view>
 </template>
@@ -218,6 +228,41 @@ const commentList = ref([
             padding-left: 60rpx;
             padding-top: 40rpx;
         }
+    }
+}
+
+.reply {
+    position: fixed;
+    bottom: 0;
+    display: flex;
+    width: 90%;
+    background-color: #fff;
+
+    textarea {
+        width: 83%;
+        padding: 20rpx;
+        box-sizing: border-box;
+        border-radius: 10rpx;
+        font-size: 28rpx;
+        background-color: #f7f7f7;
+    }
+
+    .btn {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 15%;
+        height: 80rpx;
+        padding: 5rpx 15rpx;
+        margin-left: 2%;
+        font-size: 28rpx;
+        border-radius: 10rpx;
+        color: #fff;
+        background-color: $uni-color-success;
+    }
+
+    .btn_focus {
+        background-color: #358c65;
     }
 }
 </style>
